@@ -1,7 +1,7 @@
 const countryDropdownSwitch = document.querySelector(".country-select-switch")
+const countryDropDownMenu = document.querySelector("#country-dropdown")
 
 countryDropdownSwitch.addEventListener("click", () => {
-    const countryDropDownMenu = document.querySelector("#country-dropdown")
 
     countryDropDownMenu.classList.toggle("active")
 })
@@ -26,8 +26,33 @@ for (var i = 0; i < country.length; i++) {
         // <img class="flag" src=" "./static/flags/af.png"
 }
 
-const countrySearch = document.querySelector("#country-search")
+const selectedCountry = document.getElementById("selected-country");
+const inputCountry = document.getElementById("country-input");
+let countryName = document.querySelectorAll(".country-name");
 
-countrySearch.addEventListener("keyup", () => {
-    console.log(countrySearch.value);
+countryName.forEach(country => {
+    country.parentNode.addEventListener('click', () => {
+        countryDropDownMenu.classList.remove("active");
+        selectedCountry.textContent = country.textContent;
+        inputCountry.value = country.textContent;
+        inputCountry.setAttribute("value", country.textContent);
+    })
 })
+
+const countrySearch = document.querySelector("#country-search");
+
+countrySearch.addEventListener("input", () => {
+    countryName.forEach(country => {
+        text = country.textContent.toLowerCase();
+        console.log(text);
+        search = countrySearch.value.toLowerCase();
+        console.log(search);
+        found = text.indexOf(search);
+
+        if (found != -1) {
+            country.parentNode.style.display = "grid";
+        } else {
+            country.parentNode.style.display = "none";
+        }
+    })
+});
