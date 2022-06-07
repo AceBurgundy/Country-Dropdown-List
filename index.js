@@ -38,3 +38,21 @@ countryName.forEach(country => {
         inputCountry.setAttribute("value", country.textContent);
     })
 })
+
+const countrySearch = document.querySelector("#country-search");
+
+countrySearch.addEventListener("input", () => {
+    countryName.forEach(country => {
+        text = country.textContent.toLowerCase();
+        console.log(text);
+        search = countrySearch.value.toLowerCase();
+        console.log(search);
+        found = text.indexOf(search);
+
+        if (found != -1) {
+            country.parentNode.style.display = "grid";
+        } else {
+            country.parentNode.style.display = "none";
+        }
+    })
+});
