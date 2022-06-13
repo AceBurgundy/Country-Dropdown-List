@@ -45,7 +45,7 @@ flag.forEach(flag => {
 
 ///////////////////// simulates select actions /////////////////////
 
-const selectedCountry = document.getElementById("selected-country");
+const selectedCountry = document.getElementById("selected-country-span");
 // displays the country that you had select
 
 const inputCountry = document.getElementById("country-input");
